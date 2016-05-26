@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Delta Task 1</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+<div class="container01">	
+	<h1>TIMERIZE  YOUR  "GOAL"!!</h1>
+	<div class="timerDisplay">
+		<div>DAYS
+			<div class="displayTime" id="days" value="00">00</div>
+		</div>
+		<div>HOURS
+			<div class="displayTime" id="hours" value="00">00</div>
+		</div>
+		<div>MINUTES
+			<div class="displayTime" id="minutes" value="00">00</div>
+		</div>
+		<div>SECONDS
+		    <div class="displayTime" id="seconds" value="00">00</div>
+	    </div>
+		<div>MILLISECONDS
+			<div class="displayTime" id="milliseconds" value="00">00</div>
+		</div>
+	</div>
+	<div class="enterTimerDetails">
+		<div class="inputDetails">
+			Days: <input id="inputDays" type="number" min="0" value="00">
+			Hours: <input id="inputHours" type="number" min="0" max="23" value="00">
+			Minutes: <input id="inputMinutes" type="number" min="0" max="59" value="00">
+			Seconds: <input id="inputSeconds" type="number" min="0" max="59" value="10">
+		</div>
+	</div>
+	<div class="timerOptions">
+		<button type="button" value="Update Timer" onclick="updateTimer()">Update Timer</button>
+	</div>
+	<div class="timerSetDetails">
+		<div>
+			<button type="button" onclick="startTimer()">Start Timer</button>
+		</div>
+		<div>
+			<button type="button" onclick="pauseTimer()">Pause Timer</button>
+		</div>
+		<div>
+			<button type="button" onclick="resumeTimer()">Resume Timer</button>
+		</div>
+		<div>
+			<button type="button" onclick="resetTimer()">Reset Timer</button>
+	    </div>
+	    <div>
+			<button type="button" onclick="stopTimer()">Stop Timer</button>
+	    </div>
+	</div>
+</div>
+<p id="p01"></p>
+<div>
+<audio id="myAudio" controls>
+  <!--<source src="alarm.ogg" type="audio/ogg">-->
+  <source src="alarm.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+</div>
+</body>
+<script type="text/javascript" src="index.js"></script>
+</html>

@@ -1,0 +1,145 @@
+body {
+	background-image: url("clock.jpeg");
+	background-position: center;
+	background-size: 1500px 1000px;
+}
+
+
+.container01 {
+	border-style: solid;
+	border-width: 7px;
+	border-color: #7FFF00;
+	border-radius: 6px;
+	margin-top: 100px;
+	margin-right: 100px;
+	margin-left: 100px;
+	padding-bottom: 50px;
+}
+
+
+h1 {
+	font-family: "Comic Sans MS", cursive, sans-serif;
+    color: #8B0000;
+	padding-top: 50px;
+	padding-bottom: 20px;
+	text-align: center;
+	letter-spacing: 4px;
+}
+
+
+.timerDisplay {
+	margin-bottom: 20px;
+	margin-right: 200px;
+	margin-left: 200px;
+	border-style: solid;
+	border-color: #7FFF00;
+	border-radius: 20px;
+	height: 100px;
+	text-align: center;
+    padding-top: 20px;
+}
+
+
+.timerDisplay > div {
+	font-family: "Times New Roman", Times, serif;
+	letter-spacing: 1px;
+	font-weight: 900;
+	color: #FFDC00;
+	margin-right: 30px;
+	border-style: outset;
+	border-radius: 200px;
+	border-color: #FF4136;
+	text-align: center;
+	width: 80px;
+	height: 80px;
+	/*background-color: rgb(255,0,0);*/
+	display: inline-block;
+}
+
+
+.displayTime {
+	margin-top: 5px;
+	margin-right: 13px;
+	margin-left: 13px;
+	padding-top: 10px;
+	border-style: solid;
+	border-color: red;
+	border-radius: 100px;
+	text-align: center;
+	color: 	#2F4F4F;
+	height: 30px;
+	background-color: #AAAAAA;
+	font-size: 20px;
+}
+
+
+.enterTimerDetails {
+	color: #FFDC00;
+	font-family: "Times New Roman", Times, serif;
+	font-weight: normal;
+	letter-spacing: 1px;
+	text-align: center;
+}
+
+
+.inputDetails > input {
+	margin-top: 20px;
+	width: 120px;
+	border-radius: 5px;
+	border-style: inset;
+}
+
+
+.timerOptions {
+	text-align: center;
+	margin-top: 20px;
+}
+
+
+.timerOptions > button {
+	border-radius: 10px;
+	height: 30px;
+	font-weight: bold; 
+}
+
+
+.timerOptions > button:hover {
+	background-color: #7FDBFF;
+}
+
+
+.timerSetDetails {
+	text-align: center;
+}
+
+
+.timerSetDetails > div {
+	margin-top: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+	text-align: center;
+	display: inline-block;
+}
+
+
+.timerSetDetails > div > button {
+	height: 30px;
+	border-radius: 10px;
+	border-width: 0.1px;
+	font-weight: bold;
+}
+
+
+.timerSetDetails > div > button:hover {
+	background-color: #7FDBFF;
+}
+
+
+#myAudio {
+  display: none;
+}
+
+
+#p01 {
+	display: none;
+}
