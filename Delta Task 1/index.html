@@ -3,8 +3,10 @@
 <head>
 	<title>Delta Task 1</title>
 	<link rel="stylesheet" type="text/css" href="index.css">
+	<meta name="viewport" content="width=device-width, initial-scale = 1.5">
 </head>
 <body>
+	<meta name="viewport" content="width=device-width, initial-scale = 1.5">
 <div class="container01">	
 	<h1>TIMERIZE  YOUR  "GOAL"!!</h1>
 	<div class="timerDisplay">
@@ -26,41 +28,47 @@
 	</div>
 	<div class="enterTimerDetails">
 		<div class="inputDetails">
-			Days: <input id="inputDays" type="number" min="0" value="00">
-			Hours: <input id="inputHours" type="number" min="0" max="23" value="00">
-			Minutes: <input id="inputMinutes" type="number" min="0" max="59" value="00">
-			Seconds: <input id="inputSeconds" type="number" min="0" max="59" value="10">
+			<div>Days: <input class="input" id="inputDays" type="number" min="0" value=""></div>
+			<div class="input1">Hours: <input class="input" id="inputHours" type="number" min="0" max="23" value="" placeholder="between 0 and 24">
+			    <span class="hint">Between 0 to 23</span></div>
+			<div class="input1">Minutes: <input class="input" id="inputMinutes" type="number" min="0" max="59" value="" placeholder="between 0 and 60">
+			    <span class="hint">Between 0 to 59</span></div>
+			<div class="input1">Seconds: <input class="input" id="inputSeconds" type="number" min="0" max="59" value="" placeholder="between 0 and 60">
+			    <span class="hint">Between 0 to 59</span></div>
 		</div>
 	</div>
 	<div class="timerOptions">
-		<button type="button" value="Update Timer" onclick="updateTimer()">Update Timer</button>
+		<button id="update" type="button" value="Update Timer" onclick="updateTimer()">Update Timer</button>
 	</div>
 	<div class="timerSetDetails">
 		<div>
-			<button type="button" onclick="startTimer()">Start Timer</button>
+			<button class="button" type="button" onclick="startTimer()">Start Timer</button>
 		</div>
 		<div>
-			<button type="button" onclick="pauseTimer()">Pause Timer</button>
+			<button class="button" type="button" onclick="pauseTimer()">Pause Timer</button>
 		</div>
 		<div>
-			<button type="button" onclick="resumeTimer()">Resume Timer</button>
+			<button class="button" type="button" onclick="resumeTimer()">Resume Timer</button>
 		</div>
 		<div>
-			<button type="button" onclick="resetTimer()">Reset Timer</button>
+			<button class="button" type="button" onclick="resetTimer()">Reset Timer</button>
 	    </div>
 	    <div>
-			<button type="button" onclick="stopTimer()">Stop Timer</button>
+			<button class="button" type="button" onclick="stopTimer()">Stop Timer</button>
 	    </div>
+	</div>
+	<div class="saveCookie">
+		<div>
+			<button class="button01" type="button" onClick="saveCookie()">Save Timer</button>
+		</div>
 	</div>
 </div>
 <p id="p01"></p>
 <div>
 <audio id="myAudio" controls>
-  <!--<source src="alarm.ogg" type="audio/ogg">-->
   <source src="alarm.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
 </audio>
 </div>
 </body>
-<script type="text/javascript" src="index.js"></script>
+<script type="text/javascript" src="index2.js"></script>
 </html>

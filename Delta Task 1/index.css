@@ -1,5 +1,5 @@
 body {
-	background-image: url("clock.jpeg");
+	background-image: url("clock1.jpeg");
 	background-position: center;
 	background-size: 1500px 1000px;
 }
@@ -82,11 +82,23 @@ h1 {
 }
 
 
+.inputDetails {
+	display: inline-block;
+}
+
+
+.inputDetails > div {
+	display: inline-block;
+}
+
+
 .inputDetails > input {
+	display: inline-block;	
 	margin-top: 20px;
 	width: 120px;
-	border-radius: 5px;
-	border-style: inset;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 20px;
 }
 
 
@@ -104,6 +116,7 @@ h1 {
 
 
 .timerOptions > button:hover {
+	opacity: 0.65;
 	background-color: #7FDBFF;
 }
 
@@ -142,4 +155,116 @@ h1 {
 
 #p01 {
 	display: none;
+}
+
+
+.input1 {
+    position: relative;
+    display: inline-block;
+}
+
+.input1 .hint {
+    visibility: hidden;
+    width: 150px;
+    background-color: #000000;
+    color: #FFFFFF;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 5px 5px 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 140%;
+    left: 40%;
+    margin-left: -35px;
+    opacity: 0;
+    transition: opacity 1.25s;
+}
+
+.input1 .hint::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #000000 transparent transparent transparent;
+}
+
+.input1:hover .hint {
+    visibility: visible;
+    opacity: 0.75;
+}
+
+
+.input {
+	background: transparent;
+	width: 200px;
+	border-color: #7FFF00;
+	border-style: outset;
+	border-width: 3px;
+	border-radius: 5px;
+	box-shadow: 0 0 5px 1px #00CC66;
+	color: #000066;
+	transition: border 2.0s;
+}
+
+
+.input:focus {
+	border: solid 3px #707070;
+    box-shadow: 0 0 5px 1px #969696;
+    font-family: Georgia, serif;
+    font-size: large;
+    color: #990000;
+}
+
+
+.button {
+	opacity: 0.65;
+	background: #FF3399;
+}
+
+
+.button:hover {
+	letter-spacing: 1px;
+}
+
+
+#update {
+	background: #99FF00;
+}
+
+
+#update:hover {
+	color: #00FF00;
+	letter-spacing: 1.5px;
+	font-weight: bold;
+	background: #6600FF;
+	opacity: 0.65;
+}
+
+
+.saveCookie {
+	text-align: center;
+	margin-top: 20px;
+}
+
+
+.button01 {
+	font-weight: bold;
+	height: 30px;
+	opacity: 0.65;
+	background: #FF3399;
+	border-width: solid 3px;
+	box-shadow: 2px 2px 0 0 #00CC66;
+	border-radius: 10px;
+}
+
+
+.button01:hover {
+	color: #00FF00;
+	letter-spacing: 1.5px;
+	font-weight: bold;
+	background: #6600FF;
+	opacity: 0.65;
 }
