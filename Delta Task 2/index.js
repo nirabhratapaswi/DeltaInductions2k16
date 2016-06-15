@@ -1,178 +1,224 @@
-var canvas = document.getElementById('canvas');
-var ctx = canvas.getContext('2d');
-var raf, jumpState = 0, ballXval = 0, ballYval = 0, startTime, timeDiff, bounceState = 0, accelarationIndex = 0,  runDist = 0, moveDistance = 10/3, gameState = 0, obstracleHeight = 30, obstracleWidth = 20;
+var canvas, ctx, count = 0, speed = 0, x_coordinate = 0, y_coordinate = 0, key_press = false, req_anim_frame, key_value = 0, sprint = [], jump_bonus = true, in_the_air = false;
+
+
+sprint[0] = 5;  // up
+sprint[1] = 5;  // down
+sprint[2] = 3;  // left
+sprint[3] = 3;  // right
+
 
 
 window.onload = function() {
-    document.getElementById("divCanvas").innerHTML = '<canvas id="canvas" width="' + screen.width + '" height="' + screen.height / 2 + '"></canvas>';
-    canvas = document.getElementById('canvas');
+    var canvas_initialize = '<canvas id="canvas" width=' + (screen.width * 0.98) + ' height=' + (screen.height * 0.85) + '></canvas>';
+    document.getElementById("canvas_div").innerHTML = canvas_initialize;
+    document.getElementById("canvas").style.borderStyle = 'solid';
+    document.getElementById("canvas").style.borderWidth = '3px';
+    document.getElementById("canvas").style.borderRadius = '10px';
+    canvas = document.getElementById("canvas");
     ctx = canvas.getContext('2d');
-    ball.draw();
-    ground.draw();
-}
-
-
-document.onkeydown = function(e) {
-    switch (e.keyCode) {
-        case 37:    //raf = window.requestAnimationFrame(draw);           //Left
-            break;
-        case 38:    if(jumpState == 0) {        //Up
-                        raf = window.requestAnimationFrame(drawBall);
-                        jumpState = 1;
-                        startTime = new Date();
-                        if(gameState == 0) {
-                            var startInterval = setInterval(checkHeight, 1);
-                            gameState = 1;
-                        }
-                    }
-            break;
-        case 39:            //Right
-            break;
-        case 40:            //Down
-            break;
-    }
-};
-
-
-document.onkeyup = function(e) {
-    switch (e.keyCode) {
-        case 37:            //Left
-            break;
-        case 38:            //Up
-            break;
-        case 39:            //Right
-            break;
-        case 40:            //Down
-            break;
-    }
-};
-
-
-var ball = {
-    x: screen.width/2,
-    y: screen.height/4 - 28,
-    vx: 0,
-    vy: -5,
-    ax: 0,
-    ay: 10,
-    radius: 25,
-    color: 'blue',
-    draw: function() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
-        ctx.closePath();
-        ctx.fillStyle = this.color;
-        ctx.fill();
-    }
-};
-
-
-var ground = {
-    x: 100,
-    y: 100,
-    vx: 0,
-    vy: -3,
-    radius: 25,
-    color: 'blue',
-    draw: function() {
-        var i = 0;
-        ctx.beginPath();
-        ctx.moveTo(0, canvas.height / 2);
-        ctx.lineTo(canvas.width, canvas.height / 2);
-        /*for(i = 0; i < 150 + runDist; i++) {
-            ctx.moveTo(i * 10 - moveDistance, canvas.height / 2);
-            ctx.lineTo((i-1) * 10 - moveDistance, canvas.height / 2 + 10);
-            ctx.moveTo(i * 10 - moveDistance, canvas.height / 2);
-            ctx.stroke();
-        }*/
-        ctx.moveTo(0, canvas.height / 2);
-        ctx.closePath();
-        ctx.strokeStyle = this.color;
-        ctx.stroke();
-    }
-};
-
-
-function drawGround() {
-    ctx.clearRect(0,0, canvas.width, canvas.height);
-    ground.draw();
-}
-
-
-function drawBall() {
-    var currentTime = new Date();
-    timeDiff = currentTime.getMilliseconds() - startTime.getMilliseconds();
-    ctx.clearRect(0,0, canvas.width, canvas.height);
-    ball.draw();
-        ball.x += ball.vx;
-        accelarationIndex = (-(ball.y - (canvas.height/2 - ball.radius - 2)) - 3)/76 * 4;
-        if(bounceState == 1)
-            accelarationIndex = -accelarationIndex;
-        ball.y += ball.vy + accelarationIndex;
-        document.getElementById("p01").innerHTML = accelarationIndex;
-    ground.draw();
-    obstracle.vx -= 1;
-    obstracle.draw();
-    ctx.clearRect(canvas.width - 50 + obstracle.vx, canvas.height / 2 - 1, 2, -60);
-    if(obstracle.x <= 0) {
-        obstracle.vx = 0;
-    }
-    if(bounceState <= 1)
-        raf = window.requestAnimationFrame(drawBall);
-    else {
-        window.cancelAnimationFrame(raf);
-        bounceState = 0;
-        jumpState = 0;
+    ctx.fillStyle = "rgb(84, 205, 89)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    x_coordinate = canvas.width / 2 - 40;
+    y_coordinate = canvas.height / 2 - 50;
+    var img=document.createElement('img');
+    img.src='ground.png';
+    img.onload = function () {
+        ctx.drawImage(img, 0, 0, img.width, img.height, 0, canvas.height / 2, canvas.width, canvas.height / 2)
     }
 }
 
 
-ball.draw();
 
+document.onkeyup = checkKeyUp;
 
-var obstracle = {
-    x: 0,
-    y: 0,
-    vx: 0,
-    vy: 0,
-    radius: 25,
-    color: 'blue',
-    draw: function() {
-        var i = 0;
-        ctx.beginPath();
-        ctx.moveTo(canvas.width - 50 + this.vx, canvas.height / 2);
-        this.x = canvas.width - 50 + this.vx;
-        ctx.lineTo(canvas.width - 50 + this.vx, canvas.height / 2 - obstracleHeight);
-        ctx.lineTo(canvas.width - 50 - obstracleWidth + this.vx, canvas.height / 2 - obstracleHeight);
-        ctx.lineTo(canvas.width - 50 + this.vx - obstracleWidth, canvas.height / 2);
-        ctx.moveTo(canvas.width - 50 + this.vx - obstracleWidth, canvas.height / 2);
-        ctx.closePath();
-        ctx.fillStyle = this.color;
-        ctx.fill();
-    }
-};
+document.onkeydown = function checkKeyDown(e) {
 
+    e = e || window.event;
 
-function checkHeight() {
-    if(ball.y >= (canvas.height/2 - ball.radius - 2) || ball.y <= (canvas.height/6 + ball.radius))
-    {
-        ball.vy = -ball.vy;
-        bounceState += 1;
-        ball.y += ball.vy;
+    if (e.keyCode == '38') {                // up arrow
+        if(!key_press) {
+            key_press = true;
+            if(key_value != 3)
+                setTimeout(function() {
+                    key_value = 4;
+                    jump_bonus = false;
+                }, 200);
+            key_value = 3;
+            count = 0;
+        }
     }
     
-    if(ball.y >= (canvas.height/2 - ball.radius - 2) || ball.y <= (canvas.height/6 + ball.radius))
-    {
-        ball.vy = -ball.vy;
-        bounceState += 1;
-        ball.y += ball.vy;
+    else if (e.keyCode == '40') {          // down arrow
     }
-    obstracle.vx -= 1;
-    obstracle.draw();
-    ctx.clearRect(canvas.width - 50 + obstracle.vx, canvas.height / 2 - 1, 1, -obstracleHeight - 1);
-    if(obstracle.x <= 0) {
-        obstracle.vx = 0;
-        obstracleHeight = Math.ceil(Math.random() * 20) + 30;
-        obstracleWidth = Math.ceil(Math.random() * 20) + 20;
+    
+    else if (e.keyCode == '37') {           // left arrow
+        if(!key_press || jump_bonus) {
+            key_press = true;
+            jump_bonus = false;
+            if(key_value != 2)
+                setTimeout(function() {
+                    key_value = 0;
+                    key_press = false;
+                    jump_bonus = true;
+                }, 400);
+            key_value = 2;
+            count = 0;
+        }
     }
+    
+    else if (e.keyCode == '39') {           // right arrow
+        if(!key_press || jump_bonus) {
+            key_press = true;
+            jump_bonus = false;
+            if(key_value != 1)
+                setTimeout(function() {
+                    key_value = 0;
+                    key_press = false;
+                    jump_bonus = true;
+                }, 200);
+            key_value = 1;
+            count = 0;
+        }
+    }
+
+}
+
+
+function checkKeyUp(e) {
+
+    e = e || window.event;
+
+    if (e.keyCode == '38') {
+        key_press[0] = 0;// up arrow
+    }
+    else if (e.keyCode == '40') {
+        key_press[1] = 0;// down arrow
+    }
+    else if (e.keyCode == '37') {
+        key_press[2] = 0;// left arrow
+    }
+    else if (e.keyCode == '39') {
+        key_press[3] = 0;// right arrow
+    }
+
+}
+
+
+function show_image(id, x, y) {
+    var img=document.createElement('img');
+        img.src='pain.png';
+        img.onload = function () {
+        if(id == 0)
+            ctx.drawImage(img, 10, 84, 40, 45, x, y, 40, 50);
+        else if(id == 1)
+            ctx.drawImage(img, 55, 84, 40, 45, x, y, 40, 50);
+        else if(id == 2)
+            ctx.drawImage(img, 110, 84, 40, 45, x, y, 40, 50);
+        else if(id == 3)
+            ctx.drawImage(img, 153, 84, 40, 45, x, y, 40, 50);
+        else if(id == 4)
+            ctx.drawImage(img, 197, 84, 40, 45, x, y, 40, 50);
+        else if(id == 5)
+            ctx.drawImage(img, 240, 84, 40, 45, x, y, 40, 50);
+        else if(id == 6)
+            ctx.drawImage(img, 282, 84, 40, 45, x, y, 40, 50);
+        else if(id == 7)
+            ctx.drawImage(img, 327, 84, 40, 45, x, y, 40, 50);
+        else if(id == 22)
+            ctx.drawImage(img, 1, 2, 40, 50, x, y-20, 40, 70);
+    }
+}
+
+
+var tI = setInterval(show_image_call, 1);
+
+
+function show_image_call() {
+    if(y_coordinate < (canvas.height / 2) - 45)
+        in_the_air = true;
+    if(key_value == 0) {
+        if(in_the_air)
+            key_value = 4;
+    }
+    if(y_coordinate > ((canvas.height / 2)) - 50) {
+        key_value = 0;
+        y_coordinate = (canvas.height / 2) - 50;
+        key_press = false;
+        jump_bonus = true;
+    }
+    if(x_coordinate > (canvas.width) - 45) {
+        key_value = 0;
+        x_coordinate = canvas.width - 45;
+        key_press = false;
+    }
+    if(x_coordinate < 1) {
+        key_value = 0;
+        x_coordinate = 1;
+        key_press = false;
+    }
+    
+    
+    ctx.clearRect(0, 0, canvas.width, canvas.height / 2);
+    ctx.fillStyle = "rgb(93, 214, 83)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height/2);
+        
+        
+    if(key_value == 0)
+        waiting_state();
+    else if(key_value == 1)
+        dash_sprite_right();
+    else if(key_value == 2)
+        dash_sprite_left();
+    else if(key_value == 3)
+        dash_sprite_up();
+    else if(key_value == 4)
+        dash_sprite_down();
+    if(speed % 20 == 0) {
+        count = count % 7;
+        count++;
+    }
+    speed = speed % 21;
+    speed++;
+    if(!tI)
+        tI = setInterval(show_image_call, 1);
+    document.getElementById("y_coordinate_print").innerHTML = y_coordinate + "||" + ((canvas.height)/2 - 50);
+}
+
+
+function waiting_state() {
+    show_image(22, x_coordinate, y_coordinate);
+}
+
+
+function simple_running() {
+    if(x_coordinate >= 0 && x_coordinate <= (canvas.width - 45) && y_coordinate >= 0 && y_coordinate <= (canvas.height / 2 - 50))
+        show_image(count, x_coordinate, y_coordinate);
+}
+
+
+function dash_sprite_right() {
+    x_coordinate += sprint[3];
+    if(x_coordinate >= 0 && x_coordinate <= (canvas.width - 45) && y_coordinate >= 0 && y_coordinate <= (canvas.height / 2 - 50))
+        show_image(count, x_coordinate, y_coordinate);
+}
+
+
+function dash_sprite_left() {
+    x_coordinate -= sprint[2];
+    if(x_coordinate >= 0 && x_coordinate <= (canvas.width - 45) && y_coordinate >= 0 && y_coordinate <= (canvas.height / 2 - 50))
+        show_image(count, x_coordinate, y_coordinate);
+}
+
+
+function dash_sprite_up() {
+    y_coordinate -= sprint[0];
+    if(x_coordinate >= 0 && x_coordinate <= (canvas.width - 45) && y_coordinate >= 0 && y_coordinate <= (canvas.height / 2 - 50))
+        show_image(count, x_coordinate, y_coordinate);
+}
+
+
+function dash_sprite_down() {
+    y_coordinate += sprint[1];
+    if(x_coordinate >= 0 && x_coordinate <= (canvas.width - 45) && y_coordinate >= 0 && y_coordinate <= (canvas.height / 2 - 50))
+        show_image(count, x_coordinate, y_coordinate);
 }
