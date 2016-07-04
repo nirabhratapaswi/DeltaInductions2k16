@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login Form</title>
+        <style>
+            body {
+                background-color: rgb(30, 20, 20);
+            }
+
+            #form_div {
+                color: rgb(0, 200, 0);
+                text-align: center;
+                margin-top: 200px;
+            }
+
+            h1 {
+                font-size: 50px;
+            }
+
+            #submit_button {
+                margin-top: 20px;
+                width: 70px;
+                height: 30px;
+                font-family: sans-serif;
+                font-size: 15px;
+                background-color: rgb(0, 0, 0);
+                color: rgb(0, 200, 0);
+                border-style: solid;
+                border-color: cadetblue;
+                border-width: 2px;
+                border-radius: 2px;
+            }
+
+            #input_details {
+                text-align: left;
+                margin-top: 20px;
+                margin-left: 400px;
+                font-size: 20px;
+            }
+
+            #user_name,#user_password {
+                text-align: center;
+                background-color: rgb(0, 0, 0);
+                color: rgb(0, 255, 0);
+            }
+
+            #login_link {
+                margin-top: 20px;
+                text-align: center;
+            }
+
+            #login {
+                color: rgb(0, 200, 0);
+            }
+
+            .inputs {
+                text-align: center;
+                background-color: rgb(0, 0, 0);
+                color: rgb(0, 255, 0);
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="form_div">
+            <h1>Create Account -- Sign Up</h1>
+            <form id="login_form" action="/signup-p" method="post" enctype="multipart/form-data">
+                <p id="input_details">-- <input class="inputs" name="name" id="name" type="text" accept="text/plain"> --NAME<br>
+                    -- <input class="inputs" name="user_name" id="user_name" type="text" accept="text/plain"> --USERNAME(only for login)<br>
+                    -- <input class="inputs" name="email" id="email" type="email" accept="text/plain"> --EMAIL<br>
+                    -- <input class="inputs" name="user_password" id="user_password" type="password" accept="text/plain"> --PASSWORD<br>
+                    -- <input class="inputs" name="user_password" id="user_password" type="password" accept="text/plain"> --CONFIRM PASSWORD<br>
+                    -- <input class="inputs" name="phone" id="phone" type="number" accept="text/plain"> --PHONE/MOBILE<br>
+                    -- <input class="inputs" name="profile_pic" id="profile_pic" type="file" accept="image/x-png"> --PROFILE PICTURE<br>
+                </p><br>
+                <button id="submit_button" type="submit">Login</button>
+            </form>
+        </div>
+        <div id="login_link">
+            <a id="login" href="/">Login/Existing Account?</a>
+        </div>
+    </body>
+</html>

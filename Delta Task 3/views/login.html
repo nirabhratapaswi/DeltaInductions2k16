@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>Login Form</title>
+        <style>
+            body {
+                background-color: rgb(30, 20, 20);
+            }
+
+            #form_div {
+                color: rgb(0, 200, 0);
+                text-align: center;
+                margin-top: 200px;
+            }
+
+            h1 {
+                font-size: 50px;
+            }
+
+            #submit_button {
+                margin-top: 20px;
+                width: 70px;
+                height: 30px;
+                font-family: sans-serif;
+                font-size: 15px;
+                background-color: rgb(0, 0, 0);
+                color: rgb(0, 200, 0);
+                border-style: solid;
+                border-color: cadetblue;
+                border-width: 2px;
+                border-radius: 2px;
+            }
+
+            #input_details {
+                margin-top: 20px;
+                font-size: 20px;
+            }
+
+            #user_name,#user_password {
+                text-align: center;
+                background-color: rgb(0, 0, 0);
+                color: rgb(0, 255, 0);
+            }
+
+            #signup_link {
+                margin-top: 20px;
+                text-align: center;
+            }
+
+            #signup {
+                color: rgb(0, 200, 0);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="form_div">
+            <h1>Account Login</h1>
+            <form id="login_form" action="/login-p" method="post" enctype="multipart/form-data">
+                <p id="input_details">Username-- <input name="user_name" id="user_name" type="text" accept="text/plain">
+                    <input name="user_password" id="user_password" type="password" accept="text/plain"> --Password</p><br>
+                <button id="submit_button" type="submit">Login</button>
+            </form>
+        </div>
+        <div id="signup_link">
+            <a id="signup" href="/signup" >Sign Up/Create Account</a>
+        </div>
+    </body>
+</html>

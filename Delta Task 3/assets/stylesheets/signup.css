@@ -1,0 +1,55 @@
+body {
+    background-color: rgb(30, 20, 20);
+}
+
+#form_div {
+    color: rgb(0, 200, 0);
+    text-align: center;
+    margin-top: 200px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+#submit_button {
+    margin-top: 20px;
+    width: 70px;
+    height: 30px;
+    font-family: sans-serif;
+    font-size: 15px;
+    background-color: rgb(0, 0, 0);
+    color: rgb(0, 200, 0);
+    border-style: solid;
+    border-color: cadetblue;
+    border-width: 2px;
+    border-radius: 2px;
+}
+
+#input_details {
+    text-align: left;
+    margin-top: 20px;
+    margin-left: 400px;
+    font-size: 20px;
+}
+
+#user_name,#user_password {
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    color: rgb(0, 255, 0);
+}
+
+#login_link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#login {
+    color: rgb(0, 200, 0);
+}
+
+.inputs {
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    color: rgb(0, 255, 0);
+}
